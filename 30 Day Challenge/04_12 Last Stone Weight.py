@@ -43,6 +43,8 @@ class Solution:
                 return stones_sorted_dict.peekitem()[0]
             else:
                 return 0
+
+
 obj1 = Solution()
 # stones = [4, 4, 4, 5, 6, 4, 5, 2, 5, 7, 4, 67, 3, 65, 3, 3, 45, 54, 76, 42]
 stones = [10,100,1000,10000,5,67,977,977]
