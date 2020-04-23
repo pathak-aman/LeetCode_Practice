@@ -103,14 +103,14 @@ class MinStack:
 
     def pop(self) -> None:
         if self.top_ptr >= 0:
-            if self.top() == self.min:
-                self.min = self.stack[self.top_ptr - 1]
-                print("klkm",self.min)
-                for i in self.stack[self.top_ptr - 2::-1]:
+            f = self.stack.pop(self.top_ptr)
+            self.top_ptr -= 1
+            if f == self.min:
+                self.min = inf
+                for i in self.stack:
                     if i < self.min:
                         self.min = i
-            self.stack.pop(self.top_ptr)
-            self.top_ptr-=1
+                # print("Previous min : ",f,"Now :",self.min)
 
     def top(self) -> int:
         if self.top_ptr >= 0:
@@ -124,8 +124,12 @@ minStack = MinStack()
 minStack.push(5)
 minStack.pop()
 minStack.push(0)
+minStack.push(-8)
 minStack.push(-3)
 print(minStack.getMin())
-# --> Returns -3.
+minStack.pop()
+minStack.push(-4)
+minStack.push(-8)
+print(minStack.getMin())
 minStack.pop()
 print(minStack.getMin())

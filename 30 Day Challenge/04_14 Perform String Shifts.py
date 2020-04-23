@@ -28,6 +28,7 @@ class Solution:
     #     return s
 
 a =  [[1,4],[1,5],[1,4],[1,7],[0,4],[0,7],[1,9]]
+b = [[0,9]]
 obj1 = Solution()
-print(obj1.stringShift2('abcdefghijk',a))
+print(obj1.stringShift2('abcdefg',b))
 # print(obj1.fun('abcdefghijk',a))
