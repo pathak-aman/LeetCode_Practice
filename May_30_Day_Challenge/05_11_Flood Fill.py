@@ -6,8 +6,8 @@ class Solution:
         allOldColor.remove(startPos)
         toBeColored = [startPos]
 
-        print(allOldColor)
-        print(toBeColored)
+        # print(allOldColor)
+        # print(toBeColored)
         for i in toBeColored:
             # j = 0
             # while j < len(allOldColor):

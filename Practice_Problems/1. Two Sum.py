@@ -44,9 +44,9 @@ class Solution:
                 rear = sorted_nums[rear]
                 d1 = nums.index(front)
                 nums.remove(front)
-                nums.insert(d1, target + 1)
+                # nums.insert(d1, target + 1)
                 d2 = nums.index(rear)
-                return [d1, d2]
+                return [d1, d2 + 1]
             elif sums < target:
                 front += 1
             else:
@@ -54,6 +54,6 @@ class Solution:
 
 
 instance = Solution()
-nums = [0, 4, 3, 0]
+nums = [0, 4, 0, 3]
 target = 0
 print(instance.twoSum(nums, target))
