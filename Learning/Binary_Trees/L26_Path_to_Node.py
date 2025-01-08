@@ -27,13 +27,12 @@ class Solution:
         if found_right:
             return True
         
-        if not found_left and not found_right:
-            self.path.pop()
+        # if not found_left and not found_right:
+        #     self.path.pop()
+        self.path.pop()
 
 
-    def getPath(self, root, node):
-        self.traverse(root, node)
-        return self.path
+    
 
 
 

@@ -27,4 +27,4 @@ class Solution:
             else:
                 ans.append((level_val))
             level += 1
-        return ans``
+        return ans
