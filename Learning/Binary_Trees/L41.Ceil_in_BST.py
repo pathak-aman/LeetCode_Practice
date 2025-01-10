@@ -8,17 +8,22 @@ from typing import Optional
 
 
 class Solution:
-    def search(self,root,val):
+    def __init__(self):
+        self.ceil = -1
+    def search_ceil(self,root,val):
         if not root:
             return None
         if root.val == val:
+            self.ceil = root.val
             return root
         elif root.val > val:
-            return self.search(root.left,val)
+            self.ceil = root.val
+            return self.search_ceil(root.left,val)
         else:
-            return self.search(root.right,val)
-    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
-        return self.search(root, val)
+            return self.search_ceil(root.right,val)
+    def searchBST(self, root: Optional[TreeNode], val: int):
+        self.search_ceil(root,val)
+        return self.ceil
 
 
 # Creating a BST
@@ -30,6 +35,9 @@ root.left.right = TreeNode(4)
 root.right.left = TreeNode(6)
 root.right.right = TreeNode(10)
 
-print(Solution().searchBST(root,5).val)
-print(Solution().searchBST(root,8).val)
+print(Solution().searchBST(root,6))
+print(Solution().searchBST(root,8))
+print(Solution().searchBST(root,0))
+print(Solution().searchBST(root,1))
+print(Solution().searchBST(root,9))
 print(Solution().searchBST(root,11))
