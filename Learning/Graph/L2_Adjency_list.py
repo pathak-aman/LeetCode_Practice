@@ -14,3 +14,21 @@ adj_dict = graph_adj_list(nodes, edge, edges)
 print(adj_dict)
 
 # SC -> O(2*E)
+# Weights can be stored along with edges:
+# Old: Weight = 1
+{
+    1: [2, 3, 4], 
+    2: [1, 4], 
+    4: [5, 2, 1], 
+    5: [4, 3], 
+    3: [1, 5]
+}
+
+# With weights:
+{
+    1: [(2,3), (3,5), (4,8)], 
+    2: [1, 4], 
+    4: [5, 2, 1], 
+    5: [4, 3], 
+    3: [1, 5]
+}
