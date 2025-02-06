@@ -26,10 +26,11 @@ class Solution:
                         return True
                     else:
                         path_visited_array[conn] = 0
+                print(source, visited_array, path_visited_array)
             return False
 
         # Important for components
-        for i in range(1,n):
+        for i in range(n):
             if not visited_array[i]:
                 visited_array[i] = 1
                 path_visited_array[i] = 1
@@ -48,22 +49,23 @@ adj_list1 = {
     7 :[5],
     8: [9],
     9: [10],
-    10: [8]
+    10: [8],
 }
 
 
 adj_list2 = {
-    0: [1],
+    0: [1,11],
     1: [2], 
     2: [3], 
     3: [4], 
     4: [5],
     5: [7,6],
     6 : [],
-    7 :[3],
+    7 :[],
     8: [9],
     9: [10],
-    10: [8]
+    10: [],
+    11: []
 }
 print(Solution().detect_cycle(adj_list=adj_list1))
 print(Solution().detect_cycle(adj_list=adj_list2))
