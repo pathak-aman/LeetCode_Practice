@@ -1,4 +1,4 @@
-
+from collections import deque
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -12,22 +12,43 @@ class Solution:
         swaps = 0
         sorted_level = sorted(level)
         visited_array = [0 for i in range(len(level))]
+        nums_dict = {sorted_level[i]: i for i in range(len(level))}
 
         for i in range(len(visited_array)):
-            if level[i] != sorted_level[i] and not visited_array[i]:
+            if not level[i] == sorted_level[i] and not visited_array[i]:
                 visited_array[i] = 1
                 cycle_length = 1
-                cycle_index = sorted_level.index(level[i])
-                while level[cycle_index] != level[i]:
-                    visited_array[cycle_index] = 1
+                next = nums_dict[level[i]]
+                # next = sorted_level.index(level[i])
+                while not level[next] == level[i]:
+                    visited_array[next] = 1
                     cycle_length +=1
-                    cycle_index = sorted_level.index(level[cycle_index])
-                    swaps += cycle_length - 1
-                return swaps
+                    # next = sorted_level.index(level[next])
+                    next = nums_dict[level[next]]
+                
+                swaps += cycle_length - 1
+        return swaps
 
 
-    def minimumOperations(self) -> int:
-        self.swaps = 0
+    def minimumOperations(self, root) -> int:
+        if not root:
+            return 0
+        total_swaps = 0
+        q = deque()
+        q.append(root)
 
-nums = [68020, 77092, 24805, 46436, 18824, 54086, 31847, 1214, 23978, 12234, 38254, 22523, 68727]
+        while len(q):
+            level = []
+            for _ in range(len(q)):
+                node = q.popleft()
+                level.append(node.val)
+            
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            total_swaps += self.num_swap(level)    
+        return total_swaps
+
+nums = [23,28,20,12,2,6,8,9,10]
 print(Solution().num_swap(level=nums))
