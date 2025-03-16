@@ -1,3 +1,28 @@
+'''
+Mean Squared Error (MSE) Loss:
+Loss = (y - y_pred)^2 -> Taking the mean over all samples
+
+Prediction:
+y_pred = wX + b
+
+Gradient of Loss w.r.t. Weight (w):
+dL/dw = 2 * (y - y_pred) * (-Xi)  
+      = 2 * (y_pred - y) * Xi  # Rewriting for consistency
+
+Gradient of Loss w.r.t. Bias (b):
+dL/db = 2 * (y - y_pred) * (-1)  
+      = 2 * (y_pred - y)
+
+Gradient Descent Updates:
+W = W - alpha * dL/dw
+  = W - alpha * (2 * (y_pred - y) * Xi)
+
+Since alpha (learning rate) already scales the step, we can absorb the factor of 2:
+W = W - alpha * (y_pred - y) * Xi
+'''
+
+
+
 import numpy as np
 
 class LinearRegression:
@@ -32,7 +57,7 @@ class LinearRegression:
         return y_pred
 
     def get_loss(self,y, y_pred):
-        loss = np.mean(np.square(y_pred-y))
+        loss = np.mean(np.square(y - y_pred))
         return loss
 
 
