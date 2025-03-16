@@ -12,12 +12,6 @@ Cons: Memory and computation heavy, as for each new point, distance from all the
 import numpy as np
 from collections import Counter
 
-def euclidean(p,q):
-    ''' 
-    Finds Eulicidean distance between p,q
-    '''
-    return np.sum(np.square(p-q))
-
 
 class KNN:
     def __init__(self, k = 5):
@@ -28,10 +22,9 @@ class KNN:
         self.y_train = y
     
     def predict_single(self, X):
-        distances = []
-        for x_train in self.X_train:
-            distances.append(euclidean(X, x_train))
-        distances = np.array(distances)
+        # Vectorized distance calculation (faster than looping)
+        distances = np.linalg.norm(self.X_train - X, axis=1) 
+
         k_indices = np.argsort(distances)[:self.k]
 
         k_class_lables = self.y_train[k_indices]
@@ -41,7 +34,7 @@ class KNN:
 
 
     def predict(self, X):
-        return [self.predict_single(x) for x in X]
+        return np.array([self.predict_single(x) for x in X])
     
 
 # Test the code:
@@ -55,7 +48,7 @@ if __name__ == "__main__":
         accuracy = np.sum(y_true == y_pred) / len(y_true)
         return accuracy
 
-    X,y = datasets.make_classification(n_samples = 1000, n_features=5, n_classes=3, n_informative=4, 
+    X,y = datasets.make_classification(n_samples = 100, n_features=20, n_classes=3, n_informative=12, 
                                        n_redundant=0, random_state=42)
 
 
