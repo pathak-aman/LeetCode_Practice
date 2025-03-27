@@ -44,8 +44,8 @@ class Solution:
 
                 if stops > k+1:
                     continue 
-
                 for conn, flight_price in adj_list[node]:
+                    # Only update if we found a cheaper price within the allowed stops
                     if curr_price + flight_price < price[conn]:
                         price[conn] = curr_price + flight_price
                         q.append((conn, curr_price + flight_price))
